@@ -10,10 +10,11 @@ interface Product {
     it('should fetch a list of products and validate the response', () => {
       // Send a GET request to fetch the list of products
       cy.request('GET', 'https://dummyjson.com/products').then((response) => {
+        cy.log(JSON.stringify(response.body));
         // Validate the status code
         expect(response.status).to.eq(200);
   
-        // Validating Content-Type header to check if the response returned by the API is in the expected format.
+        // validate that the response returned by the API is in the expected format.
         expect(response.headers['content-type']).to.include('application/json');
 
         // Validate the structure of the response body
@@ -33,7 +34,7 @@ interface Product {
   
         });
   
-        // Check empty array case
+        // Check if the response returned an empty array for Better Test Coverage (edge cases)
         if (response.body.products.length === 0) {
           expect(response.body.products).to.be.an('array').that.is.empty;
         }

@@ -20,7 +20,7 @@ interface Product {
     it('should update an existing product and validate the response', () => {
       const productId: number = 1;
       const updatedProduct = {
-        title: 'Updated-Product',
+        title: 'Updated-Product-title',
         description: 'This is the description of the updated product.',
         price: 250,
         category: 'updated-product-category'
