@@ -1,0 +1,11 @@
+1.	Prerequisites:
+    •	Install Node.js and npm and verify that both are installed by running  “node -v” and  “npm -v” in the terminal
+2.	Setup:
+    •	Clone the Repository and change the directory by running :
+git clone <https://github.com/HibaArafeh/cypress-test-automation-ts.git>
+cd <cypress-test-automation-ts>.
+    •	Install dependencies by running:
+npm install  (This will install Cypress, TypeScript and other necessary packages).
+    •	Run the test with Cypress Test Runner UI execute:
+    npx cypress open (This will open the Cypress Test Runner, where you can select and run tests interactively.)
+
