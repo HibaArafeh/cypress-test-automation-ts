@@ -23,14 +23,7 @@ describe('Add New Product', () => {
     };
 
     // Send POST request to add the product
-    cy.request({
-      method: 'POST',
-      url: 'https://dummyjson.com/products/add', // Endpoint to add a new product
-      body: newProduct, // Send the new product as the body of the request
-      headers: {
-        'Content-Type': 'application/json', // Tells the server that the request body is in JSON format 
-      }
-    }).then((response) => {
+    cy.request('POST','https://dummyjson.com/products/add', newProduct).then((response) => {
       cy.log(JSON.stringify(response.body)); // Log the response body for debugging
 
       // Assert the status code is 201 (Created) for a successful creation
