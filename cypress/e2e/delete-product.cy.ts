@@ -2,28 +2,22 @@
 interface DeleteProductResponse {
   id: number;
   isDeleted: boolean;
-  deletedOn?: string; // Optional, as it might not be present in all responses
+  deletedOn: string; 
 }
 
 // Test suite for deleting a product
 describe('Delete Product', () => {
-  // Define the base API URL, defaulting to 'https://dummyjson.com' if no environment variable is set
-  const apiUrl: string = Cypress.env('apiUrl') || 'https://dummyjson.com';
+  // Define the base API URL, defaulting to 'https://dummyjson.com
+  const apiUrl: string = 'https://dummyjson.com';
 
   // Test case: Deletes an existing product and validates the responses
   it('should delete an existing product and validate the response', () => {
-    const productId: number = 3; // The ID of the product to be deleted
-
-    //Send a DELETE request to remove the product
-    cy.request<DeleteProductResponse>({
-      method: 'DELETE', 
-      url: `${apiUrl}/products/${productId}`, // API endpoint for deleting the product
-      headers: {
-        'Content-Type': 'application/json', // Specify the request content type
-      },
-    }).then((response) => {
-      //Log the DELETE response
+    const productId: number = 19;  // The ID of the product to be deleted
+   
+    cy.request('DELETE',`${apiUrl}/products/${productId}`).then((response) => {
+      // Log the DELETE response
       cy.log('DELETE Response:', JSON.stringify(response.body));
+      expect(response.headers['content-type']).to.include('application/json');
 
       //Validate the DELETE response
       expect(response.status).to.eq(200); // Check that the response status is 200 (OK)
@@ -35,7 +29,7 @@ describe('Delete Product', () => {
       expect(response.body.deletedOn).to.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/); // ISO 8601 format
     });
 
-    //Verify the product still exists but is flagged as deleted
+    //request function accepts an object(HTTP method,url, and optional configurations)
     cy.request({
       method: 'GET', // HTTP method to fetch the product details
       url: `${apiUrl}/products/${productId}`, // API endpoint to retrieve the product

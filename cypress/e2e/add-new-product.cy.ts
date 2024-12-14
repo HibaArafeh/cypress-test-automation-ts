@@ -26,7 +26,7 @@ describe('Add New Product', () => {
     cy.request('POST','https://dummyjson.com/products/add', newProduct).then((response) => {
       cy.log(JSON.stringify(response.body)); // Log the response body for debugging
 
-      // Assert the status code is 201 (Created) for a successful creation
+      // Assert the status code is 201 for a successful added product
       expect(response.status).to.eq(201);
 
       // Validate the response body properties using chaining

@@ -11,7 +11,7 @@ describe('Fetch Single Product by ID', () => {
     const productId: number = 3; // Example product ID from the Dummy JSON API
 
     // Sending GET request to fetch a product by ID
-    cy.request('GET', `https://dummyjson.com/products/${productId}`).then((response: Cypress.Response<Product>) => {
+    cy.request('GET', `https://dummyjson.com/products/${productId}`).then((response) => {
       cy.log(JSON.stringify(response.body));
       // Validate status code
       expect(response.status).to.eq(200);
