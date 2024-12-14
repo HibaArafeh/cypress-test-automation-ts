@@ -9,8 +9,13 @@ interface Product {
   describe('Fetch List of Products', () => {
     it('should fetch a list of products and validate the response', () => {
       // Send a GET request to fetch the list of products
-      cy.request('GET', 'https://dummyjson.com/products').then((response) => {
+      cy.request('GET', 'https://dummyjson.com/products?skip=164').then((response) => {
         cy.log(JSON.stringify(response.body));
+
+        cy.log('Limit: ' + response.body.limit); //maximum number of products per request
+        cy.log('Total: ' + response.body.total);  //Total amount of products in this case 194
+        cy.log('Skip: ' + response.body.skip);    //how many items have been skipped from the start of the dataset.
+
         // Validate the status code
         expect(response.status).to.eq(200);
   
